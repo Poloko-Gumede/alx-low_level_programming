@@ -2,46 +2,28 @@
 #include <stdlib.h>
 #include <time.h>
 
-// The provided hash function
-int hash(char *s)
-{
-int hash;
-unsigned int i;
+#define PASSWORD_LENGTH 61
 
-for (i = 0, hash = 0; s[i]; i++)
-hash = hash + s[i] * (i + 1);
-
-return (hash);
-}
-
+/**
+ * main - Generates random valid passwords for the program 101-crackme
+ *
+ * Return: Always 0.
+ */
 int main(void)
 {
-const int NUM_PASSWORDS = 10;
-const int PASSWORD_LENGTH = 10;
-const int DESIRED_HASH = 0x5d;
-const char CHARSET[] = "abcdefghijklmnopqrstuvwxyz";
-char password[PASSWORD_LENGTH + 1];
-int i, h;
+    int i;
+    char password[PASSWORD_LENGTH + 1];
+    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-// Seed the random number generator
-srand(time(NULL));
+    srand(time(NULL));
 
-// Generate the passwords
-for (i = 0; i < NUM_PASSWORDS; i++)
-{
-// Generate a random password
-for (int j = 0; j < PASSWORD_LENGTH; j++)
-password[j] = CHARSET[rand() % 26];
-password[PASSWORD_LENGTH] = '\0';
+    for (i = 0; i < PASSWORD_LENGTH; i++)
+    {
+        password[i] = charset[rand() % sizeof(charset)];
+    }
 
-// Hash the password and check if it's valid
-h = hash(password);
-if (h == DESIRED_HASH)
-{
-printf("Valid password found: %s\n", password);
-}
-}
+    printf("%s\n", password);
 
-return 0;
+    return (0);
 }
 
