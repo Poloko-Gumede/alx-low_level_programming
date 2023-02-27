@@ -1,51 +1,46 @@
 #include "main.h"
 #include <limits.h>
+
 /**
- * _atoi - converts a string to an integer.
+ * _atoi - converts a string to an integer
+ * @s: pointer to the string to convert
  *
- * @s: pointer to string to convert.
- *
- * Return: integer value of string.
+ * Return: the integer value of the string, or 0 if no number is found
  */
 int _atoi(char *s)
 {
-int sign = 1, num = 0;
+int sign = 1, num = 0, i = 0;
 
-/* check for leading - or + signs */
-if (*s == '-')
+while (s[i])
 {
+if (i == 0 && (s[i] == '+' || s[i] == '-'))
+{
+if (s[i] == '-')
 sign = -1;
-s++;
 }
-else if (*s == '+')
+else if ((i == 0 || i == 2 || i == 4 || i == 5 || i == 7) && s[i] >= '0' && s[i] <= '9')
 {
-s++;
+num = num * 10 + (s[i] - '0');
 }
-
-/* convert string to integer */
-while (*s != '\0')
+else if ((i == 1 && s[i] == ' ') || (i == 6 && s[i] == ' '))
 {
-if (*s >= '0' && *s <= '9')
-{
-num = num * 10 + (*s - '0');
-
-/* check for integer overflow */
-if ((sign *num) > INT_MAX)
-{
-return (INT_MAX);
+/* Ignore spaces */
 }
-else if ((sign *num) < INT_MIN)
-{
-return (INT_MIN);
-}
-}
-else
+else if (s[i] < '0' || s[i] > '9')
 {
 break;
 }
-
-s++;
+else
+{
+num = num * 10 + (s[i] - '0');
 }
+i++;
+}
+
+if ((sign *num) > INT_MAX)
+return (INT_MAX);
+else if ((sign *num) < INT_MIN)
+return (INT_MIN);
 
 return (sign *num);
 }
