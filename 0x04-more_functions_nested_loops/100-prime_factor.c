@@ -2,37 +2,36 @@
 #include <math.h>
 
 /**
- * main - Finds and prints the largest prime factor
- * of the number 612852475143, followed by a new line.
+ * main - Entry point
  *
- * Return: Always 0
+ * Return: Always 0 (Success)
  */
 
 int main(void)
 {
-unsigned long n = 612852475143;
-unsigned long largest_factor = 0;
+long long n = 612852475143;
+long long max_factor = 1;
 
 while (n % 2 == 0)
 {
-largest_factor = 2;
+max_factor = 2;
 n /= 2;
 }
 
-for (int i = 3; i <= sqrt(n); i += 2)
+for (long long i = 3; i <= sqrt(n); i += 2)
 {
 while (n % i == 0)
 {
-largest_factor = i;
+max_factor = i;
 n /= i;
 }
 }
 
 if (n > 2)
-largest_factor = n;
-
-printf("%lu\n", largest_factor);
-
-return (0);
+{
+max_factor = n;
 }
 
+printf("%lld\n", max_factor);
+return (0);
+}
