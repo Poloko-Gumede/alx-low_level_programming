@@ -1,18 +1,18 @@
 #include "main.h"
 
 /**
- * main - Entry point
+ * _isalpha - checks for lowercase character
  *
- * Return: Always 0 (Success)
+ * @c: character to be checked
+ *
+ * Return: 1 if c is lowercase, 0 otherwise
  */
 
-int main(void)
-{
-char c;
 
-c = 'H';
-if (_isalpha(c))
-_putchar(c);
+int _isalpha(int c)
+{
+if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+return (1);
+else
 return (0);
 }
-
