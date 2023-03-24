@@ -7,7 +7,7 @@
  * @action: the function to apply to each element of the array
  *
  * Description: This function takes an array, its size,
- *and a function pointer as arguments.
+ * and a function pointer as arguments.
  * It applies the function pointed to by 'action' to each element of the array.
  */
 void array_iterator(int *array, size_t size, void (*action)(int))
